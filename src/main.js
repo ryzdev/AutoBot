@@ -31,7 +31,7 @@ require(objectFiles, function () {
         window.location = "";
     });
 
-    Q.load("tiles_map.png, player.png, firstStreet.tmx", function() { //creating stage (layer)
+    Q.load("tiles_map.png, autobot.png, firstStreet.tmx", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
         Q.stageScene("firstStreet");
     });
