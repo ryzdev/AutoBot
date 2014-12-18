@@ -1,14 +1,18 @@
-            var Q = Quintus()
-                .include("Sprites, Scenes, Input, 2D, Touch, UI")
-                .setup({
-                    width: 960,
-                    height: 640
-                }).controls().touch();
+var Q = Quintus({ audioSupported: [ 'mp3' ] })
+    .include("Sprites, Scenes, Input, 2D, Touch, UI, Audio")
+    .setup({
+        width: 960,
+        height: 640
+    })
+    .controls()
+    .touch()
+    .enableSound();
  
 //Q.gravityY = 9.8;
  
 var objectFiles = [
-  './src/sprites/player'
+  './src/sprites/player',
+  './src/audio'
 ];
  
 require(objectFiles, function () {
