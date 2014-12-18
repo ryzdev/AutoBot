@@ -1,16 +1,17 @@
 require([], function () {
+    function killPlayer(collision){
+        Q.stageScene("endGame",1, { label: "Game Over" });
+        collision.obj.destroy();
+    }
+
     Q.component("BaseEnemy", {
         added: function() {
             var entity = this.entity;
             entity.on("bump.left,bump.right,bump.bottom",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    this.killPlayer(collision);
+                    killPlayer(collision);
                 }
             });
-        },
-        killPlayer: function(collision){
-            Q.stageScene("endGame",1, { label: "Game Over" });
-            collision.obj.destroy();
         },
         step: function(dt) {
             var dirX = this.p.vx/Math.abs(this.p.vx);
@@ -58,29 +59,14 @@ require([], function () {
 
     Q.Sprite.extend("EnemyToAvoid", {
         init: function(p) {
-            this._super(p, {vx: -100, defaultDirection: "left"});
+            this._super(p, {vx: -150, defaultDirection: "left"});
             this.add("2d, aiBounce, BaseEnemy");
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    this.kill_player(collision);
+                    killPlayer(collision);
                 }
             });
         }
     });
 
-
-
-
-    Q.Sprite.extend("SecurityGuard", {
-        init: function(p) {
-            this._super(p, {vx: -100, defaultDirection: "left"});
-            this.add("EnemyToAvoid");
-        }
-    });
 });
-
-
-(function(Q){
-
-
-}(Q));

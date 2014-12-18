@@ -20,7 +20,9 @@ require(objectFiles, function () {
     //creating scene on stage
 
     var enemyAssets = [
-        ["SecurityGuard", {x: 50, y: 50, asset: "enemies/security_guard.png"}]
+//        ["EnemyToAvoid", {x: 400, y: 3220, asset: "enemies/security-guard.png"}],
+        ["EnemyToAvoid", {x: 800, y: 3220, asset: "enemies/security-guard.png"}],
+        ["EnemyToAvoid", {x: 400, y: 3020, asset: "enemies/security-guard.png"}]
     ];
 
     Q.scene("firstStreet",function(stage) {
@@ -39,7 +41,7 @@ require(objectFiles, function () {
         window.location = "";
     });
 
-    Q.load("tiles_map.png, player.png, firstStreet.tmx", function() { //creating stage (layer)
+    Q.load("tiles_map.png, player.png, firstStreet.tmx, enemies/security-guard.png", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
         Q.stageScene("firstStreet");
     });
