@@ -38,46 +38,14 @@
                 }                    
               });
 
-            //enemy that goes up and down
-            Q.Sprite.extend("VerticalEnemy", {
-                init: function(p) {
-                    this._super(p, {vy: -100, rangeY: 200, gravity: 0 });
-                    this.add("2d");
-                    
-                    this.p.initialY = this.p.y;
-                    
-                    this.on("bump.left,bump.right,bump.bottom",function(collision) {
-                        if(collision.obj.isA("Player")) { 
-                          Q.stageScene("endGame",1, { label: "Game Over" }); 
-                          collision.obj.destroy();
-                        }
-                    });
-                    this.on("bump.top",function(collision) {
-                        if(collision.obj.isA("Player")) { 
-                          collision.obj.p.vy = -100;
-                          this.destroy();
-                        }
-                    });
-                },
-                step: function(dt) {    // dt is time within game loop
-                    if(this.p.y - this.p.initialY >= this.p.rangeY && this.p.vy > 0) {
-                            this.p.vy = -this.p.vy;
-                        } 
-                        else if(-this.p.y + this.p.initialY >= this.p.rangeY && this.p.vy < 0) {
-                            this.p.vy = -this.p.vy;
-                        } 
-                }
-            });            
-
             //creating scene on stage
-            Q.scene("level1",function(stage) {          
-            var background = new Q.TileLayer({ dataAsset: 'level1.tmx', layerIndex: 0, sheet: 'tiles', tileW: 70, tileH: 70, type: Q.SPRITE_NONE });  //Q.SPRITE_NONE nocoll
+            Q.scene("firstStreet",function(stage) {
+            var background = new Q.TileLayer({ dataAsset: 'firstStreet.tmx', layerIndex: 0, sheet: 'tiles', tileW: 70, tileH: 70, type: Q.SPRITE_NONE });  //Q.SPRITE_NONE nocoll
             stage.insert(background);   
-            stage.collisionLayer(new Q.TileLayer({ dataAsset: 'level1.tmx', layerIndex:1,  sheet: 'tiles', tileW: 70, tileH: 70 }));   
+            stage.collisionLayer(new Q.TileLayer({ dataAsset: 'firstStreet.tmx', layerIndex:1,  sheet: 'tiles', tileW: 70, tileH: 70 }));
             // add player onto scene
             var player = stage.insert(new Q.Player()); 
-            stage.insert(new Q.VerticalEnemy({x: 800, y: 120, rangeY: 70, asset: "fly.png" }));
-            stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: background.p.w, minY: 0, maxY: background.p.h});   
+            stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: background.p.w, minY: 0, maxY: background.p.h});
             });
 
             Q.scene("endGame",function(stage) {
@@ -85,9 +53,9 @@
                 window.location = "";
             });
 
-            Q.load("tiles_map.png, player.png, fly.png, level1.tmx", function() { //creating stage (layer)
+            Q.load("tiles_map.png, player.png, firstStreet.tmx", function() { //creating stage (layer)
 			  Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});          
-			  Q.stageScene("level1"); 
+			  Q.stageScene("firstStreet");
 			});          
         </script>
     </body>
