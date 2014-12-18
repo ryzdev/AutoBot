@@ -4,6 +4,8 @@ require([], function () {
         collision.obj.destroy();
     }
 
+    window.security_guards = [];
+
     Q.component("BaseEnemy", {
         added: function() {
             var entity = this.entity;
@@ -49,7 +51,7 @@ require([], function () {
                 if(collision.obj.isA("Player")) {
                     //make the player jump
                     collision.obj.p.vy = -100;
-
+                    Q.state.inc("score",50);
                     //kill enemy
                     this.destroy();
                 }
@@ -66,7 +68,17 @@ require([], function () {
                     killPlayer(collision);
                 }
             });
+
+            window.security_guards.push(this);
         }
     });
 
+    Q.Sprite.extend("DoorToHeaven", {
+        init: function(p) {
+            this._super(p, {});
+            this.add("2d");
+
+            //TODO: check for player collisions, die or kill accordingly
+        }
+    });
 });

@@ -13,6 +13,7 @@ var Q = Quintus({ audioSupported: [ 'mp3' ] })
 var objectFiles = [
     './src/sprites/player',
     './src/sprites/enemies',
+    './src/sprites/badge',
     './src/audio'
 ];
  
@@ -22,7 +23,11 @@ require(objectFiles, function () {
     var enemyAssets = [
 //        ["EnemyToAvoid", {x: 400, y: 3220, asset: "enemies/security-guard.png"}],
         ["EnemyToAvoid", {x: 800, y: 3220, asset: "enemies/security-guard.png"}],
-        ["EnemyToAvoid", {x: 400, y: 3020, asset: "enemies/security-guard.png"}]
+        ["EnemyToAvoid", {x: 400, y: 3020, asset: "enemies/security-guard.png"}],
+        ["EnemyToKill", {x: 400, y: 2020, asset: "enemies/ebay.png"}],
+        ["Badge", {x: 470, y: 3020, asset: "badge.png"}]
+
+//        ["DoorToHeaven", {x: 900, y: 3020, asset: "7thfloor-door.png"}]
     ];
 
     Q.scene("firstStreet",function(stage) {
@@ -37,12 +42,64 @@ require(objectFiles, function () {
     });
 
     Q.scene("endGame",function(stage) {
-        alert("game over");
-        window.location = "";
+
+
+        var container = stage.insert(new Q.UI.Container({
+            fill: "white",
+            border: 5,
+            shadow: 10,
+            shadowColor: "rgba(0,0,0,0.5)",
+            y: Q.height/2,
+            x: Q.width/2
+        }));
+
+        stage.insert(new Q.UI.Button({
+            label: "Game Over\nClick to play again",
+            color: 'white',
+            y: 0,
+            x: 0
+        }, function() {
+            window.location = '';
+        }), container);
+
+        container.fit(40,40);
     });
 
-    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png", function() { //creating stage (layer)
+    Q.scene("gameStats", function(stage) {
+        var statsContainer = stage.insert(new Q.UI.Container({
+            fill: "gray",
+            x: Q.width/2,
+            y: 10,
+            border: 1,
+            shadow: 3,
+            shadowColor: "rgba(0,0,0,0.5)",
+            w: 960,
+            h: 40
+            })
+        );
+
+        var score = stage.insert(new Q.UI.Text({
+                label: "Score: 0",
+                color: "white",
+                x: 300,
+                y: 0
+            }),statsContainer);
+    });
+
+
+
+
+    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/ebay.png, badge.png", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
         Q.stageScene("firstStreet");
+        Q.stageScene("gameStats",1);
     });
+
+    Q.state.set('score', 0);
+    Q.state.on("change.score",function() {
+
+        var livesLabel = Q("UI.Text",1).first();
+        livesLabel.p.label = "Score: "+ Q.state.score;
+    });
+
 });
