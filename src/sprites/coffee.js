@@ -8,7 +8,7 @@ require([], function () {
             this.add("2d");
             this.on("bump.left,bump.right,bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
-//                    Q.audio.play('COFFEE');
+                    Q.audio.play('COFFEE');
                     Q.state.inc("lives", 1);
                     //kill enemy
                     this.destroy();

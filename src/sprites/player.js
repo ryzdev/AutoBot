@@ -24,7 +24,7 @@ require([], function () {
         },
         damage: function(){
             if(!this.p.timeInvincible) {
-//                Q.audio.play('LOSE_LIFE');
+                Q.audio.play('LOSE_LIFE');
                 Q.state.dec("lives", 1);
                 if(Q.state.p.lives < 0) {
                     Q.stageScene("endGame",1, { label: "Game Over" });

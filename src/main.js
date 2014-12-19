@@ -1,4 +1,4 @@
-var Q = Quintus({ audioSupported: [ 'mp3', 'wav' ] })
+var Q = Quintus({ audioSupported: [ 'mp3' ] })
     .include("Sprites, Scenes, Input, 2D, Touch, UI, Audio")
     .setup({
         width: 960,
@@ -24,16 +24,16 @@ require(objectFiles, function () {
     //creating scene on stage
 
     var enemyAssets = [
-//        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
-//        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
-//        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
-//        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
-//        ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
-//        ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
-//        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
-//        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}],
+        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
+        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
+        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
+        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
+        ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
+        ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
+        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
+        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}],
         ["EnemyToKill", {x: 500, y: 910, asset: "enemies/red_car.png"}],
-        ["EnemyToKillFast", {x: 500, y: 910, asset: "enemies/red_car.png"}],
+        ["EnemyToKillFast", {x: 900, y: 910, asset: "enemies/red_car.png"}],
         ["EndGame", {x: 100, y: 300, asset: "7thfloor-door.png"}]
     ];
 
@@ -77,7 +77,8 @@ require(objectFiles, function () {
     });
 
     Q.scene("winGame",function(stage) {
-//        Q.audio.play('OST');
+        Q.audio.stop();
+        Q.audio.play('OST');
         var container = stage.insert(new Q.UI.Container({
             fill: "white",
             border: 5,

@@ -52,7 +52,7 @@ require([], function () {
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
                     //make the player jump
-//                    Q.audio.play('KILL');
+                    Q.audio.play('KILL');
                     collision.obj.p.vy = -100;
                     Q.state.inc("score",50);
                     //kill enemy
@@ -69,7 +69,7 @@ require([], function () {
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
                     //make the player jump
-//                    Q.audio.play('KILL');
+                    Q.audio.play('KILL');
                     collision.obj.p.vy = -100;
                     Q.state.inc("score",50);
                     //kill enemy
@@ -152,7 +152,7 @@ require([], function () {
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
                     collision.obj.p.vy = -100;
-//                    Q.audio.play('KILL');
+                    Q.audio.play('KILL');
                     this.destroy();
                 }
             });
