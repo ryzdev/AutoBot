@@ -15,6 +15,13 @@ require([], function () {
             var ground = Q.stage().locate(this.p.x, this.p.y + this.p.h/2 + 1, Q.SPRITE_DEFAULT);
             var nextTile = Q.stage().locate(this.p.x + dirX * this.p.w/2 + dirX, this.p.y + this.p.h/2 + 1, Q.SPRITE_DEFAULT);
 
+            if (this.p.min_x && this.p.max_y){
+                if (this.p.x < this.p.min_x && this.p.y >= this.p.max_y){
+                    this.destroy();
+                    return;
+                }
+            }
+
             //if we are on ground and there is a cliff
             if(!nextTile && ground) {
                 if(this.p.vx > 0) {
@@ -40,7 +47,7 @@ require([], function () {
 
     Q.Sprite.extend("EnemyToKill", {
         init: function(p) {
-            this._super(p, {vx: -100, defaultDirection: "left"});
+            this._super(p, {vx: -100, defaultDirection: "left", min_x: 100, max_y: 2050});
             this.add("2d, aiBounce, BaseEnemy");
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
