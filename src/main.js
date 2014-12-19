@@ -43,9 +43,9 @@ require(objectFiles, function () {
 
         stage.loadAssets(enemyAssets);
 
-        var timer = setInterval ( function(){
+        var timer2 = setInterval ( function(){
             stage.loadAssets([ ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}]])
-        }, 3000 );
+        }, 4000 );
     });
 
     Q.scene("endGame",function(stage) {
@@ -139,7 +139,7 @@ require(objectFiles, function () {
         var timer = setInterval ( function(){
             Q.state.inc("time", 1);
             Q.state.dec("score", 10);
-        }, 5000 );
+        }, 1000 );
     });
 
     Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png", function() { //creating stage (layer)
