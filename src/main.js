@@ -53,7 +53,7 @@ require(objectFiles, function () {
         }));
 
         stage.insert(new Q.UI.Button({
-            label: "You're fired! Click to play again",
+            label: "You're fired you only scored " + Q.state.p.score + "! Click to play again",
             color: 'white',
             y: 0,
             x: 0
@@ -100,36 +100,33 @@ require(objectFiles, function () {
         );
 
         var score = stage.insert(new Q.UI.Text({
-                label: "Score: 0",
+                label: "Score: "  + Q.state.p.score,
                 color: "white",
                 x: 290,
                 y: 0
             }),statsContainer);
 
         var time = stage.insert(new Q.UI.Text({
-                label: "Time: 0",
+                label: "Time: " + Q.state.p.time,
                 color: "white",
                 x: 120,
                 y: 0
             }),statsContainer);
 
         var lives = stage.insert(new Q.UI.Text({
-                label: "Lives: 3",
+                label: "Lives: " + Q.state.p.lives,
                 color: "white",
                 x: -50,
                 y: 0
             }),statsContainer);
 
         var recs = stage.insert(new Q.UI.Text({
-                label: "Recommendations: 0",
+                label: "Recommendations: " + Q.state.p.recommendations,
                 color: "white",
                 x: -300,
                 y: 0
             }),statsContainer);
     });
-
-
-
 
     Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/wheel.png, badge.png", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
@@ -137,11 +134,25 @@ require(objectFiles, function () {
         Q.stageScene("gameStats",1);
     });
 
-    Q.state.reset({ score: 0, lives: 1 , recommendations: 0, time: 0});
-    Q.state.on("change.score",function() {
+    Q.state.reset({ score: 5000, lives: 1 , recommendations: 0, time: 0});
 
+    Q.state.on("change.score",function() {
         var score_label = Q("UI.Text",1).first();
         score_label.p.label = "Score: "+ Q.state.p.score;
     });
 
+    Q.state.on("change.time", function() {
+        var info_label = Q("UI.Text", 1).index(2);
+        info_label.p.label = "Time: "+ Q.state.p.time;
+    });
+
+    Q.state.on("change.time", function() {
+        var info_label = Q("UI.Text", 1).index(3);
+        info_label.p.label = "Lives: "+ Q.state.p.lives;
+    });
+
+    Q.state.on("change.time", function() {
+        var info_label = Q("UI.Text", 1).index(4);
+        info_label.p.label = "Recommendations: "+ Q.state.p.recommendations;
+    });
 });
