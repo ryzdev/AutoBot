@@ -23,15 +23,15 @@ require(objectFiles, function () {
     //creating scene on stage
 
     var enemyAssets = [
-//        ["EnemyToAvoid", {x: 400, y: 3220, asset: "enemies/security-guard.png"}],
-//        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
-//        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
-//        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
-//        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
+        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
+        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
+        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
+        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
         ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
         ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
 //        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
         ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}]
+        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}]
     ];
 
     Q.scene("firstStreet",function(stage) {
@@ -43,6 +43,10 @@ require(objectFiles, function () {
         stage.add("viewport").follow(player,{x: true, y: true},{minX: 0, maxX: background.p.w, minY: 0, maxY: background.p.h});
 
         stage.loadAssets(enemyAssets);
+
+        var timer = setInterval ( function(){
+            stage.loadAssets([ ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}]])
+        }, 3000 );
     });
 
     Q.scene("endGame",function(stage) {
@@ -56,7 +60,7 @@ require(objectFiles, function () {
         }));
 
         stage.insert(new Q.UI.Button({
-            label: "You're fired you only scored " + Q.state.p.score + "! Click to play again",
+            label: "You're still fired you only scored " + Q.state.p.score + "! Click to play again",
             color: 'white',
             y: 0,
             x: 0
@@ -78,7 +82,7 @@ require(objectFiles, function () {
         }));
 
         stage.insert(new Q.UI.Button({
-            label: "Congratulations! You're hired!!!!!! You scored " + Q.state.p.score,
+            label: "Congratulations! You're hired again!!!!!! You scored " + Q.state.p.score,
             color: 'yellow',
             y: 0,
             x: 0
@@ -136,7 +140,7 @@ require(objectFiles, function () {
         var timer = setInterval ( function(){
             Q.state.inc("time", 1);
             Q.state.dec("score", 10);
-        }, 1000 );
+        }, 5000 );
     });
 
     Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png", function() { //creating stage (layer)

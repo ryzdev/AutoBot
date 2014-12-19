@@ -12,7 +12,7 @@ require([], function () {
                 this.p.flip = false;
             }
 
-            if (this.p.y < 1100){
+            if (this.p.y < 10){
                 Q.stageScene("winGame",1, { label: "Game Over" });
                 this.destroy();
             }
