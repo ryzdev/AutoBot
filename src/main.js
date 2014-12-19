@@ -49,6 +49,7 @@ require(objectFiles, function () {
     });
 
     Q.scene("endGame",function(stage) {
+        Q.audio.play('DEAD');
         var container = stage.insert(new Q.UI.Container({
             fill: "white",
             border: 5,
@@ -68,6 +69,7 @@ require(objectFiles, function () {
         }), container);
 
         container.fit(40,40);
+
     });
 
     Q.scene("winGame",function(stage) {
