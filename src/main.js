@@ -29,8 +29,9 @@ require(objectFiles, function () {
         ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
         ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
         ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
-        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
-        ["Coffee", {x: 500, y: 1800, asset: "coffee.png"}]
+//        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
+        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}]
+        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}]
     ];
 
     Q.scene("firstStreet",function(stage) {
