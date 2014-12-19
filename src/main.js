@@ -25,7 +25,7 @@ require(objectFiles, function () {
         ["EnemyToAvoid", {x: 800, y: 2050, asset: "enemies/security-guard.png"}],
         ["EnemyToAvoid", {x: 400, y: 1800, asset: "enemies/security-guard.png"}],
         ["EnemyToKill", {x: 280, y: 910, asset: "enemies/ebay.png"}],
-        ["Badge", {x: 470, y: 3020, asset: "badge.png"}]
+        ["Badge", {x: 450, y: 1800, asset: "badge.png"}]
 
 //        ["DoorToHeaven", {x: 900, y: 3020, asset: "7thfloor-door.png"}]
     ];
