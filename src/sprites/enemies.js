@@ -116,7 +116,7 @@ require([], function () {
 
     Q.Sprite.extend("VerticalEnemyToAvoid", {
         init: function(p) {
-            this._super(p, {vy: -150, rangeY: 100, gravity: 0 });
+            this._super(p, {vy: -150, rangeY: 70, gravity: 0 });
             this.add("2d");
 
             this.p.initialY = this.p.y;
@@ -133,10 +133,10 @@ require([], function () {
                 if(collision.obj.isA("Player")) {
                     collision.obj.p.vy = -100;
                     this.destroy();
-                } else {
-                    console.log('1')
                 }
             });
+
+            window.security_guards.push(this);
         },
 
         step: function(dt) {
