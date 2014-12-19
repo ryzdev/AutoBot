@@ -1,12 +1,4 @@
 require([], function () {
-    function killPlayer(collision){
-        Q.state.dec("lives", 1);
-        if(Q.state.p.lives == 0) {
-            Q.stageScene("endGame",1, { label: "Game Over" });
-            collision.obj.destroy();
-        }
-    }
-
     window.security_guards = [];
 
     Q.component("BaseEnemy", {
@@ -14,7 +6,7 @@ require([], function () {
             var entity = this.entity;
             entity.on("bump.left,bump.right,bump.bottom",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    killPlayer(collision);
+                    collision.obj.damage();
                 }
             });
         },
@@ -68,7 +60,7 @@ require([], function () {
             this.add("2d, aiBounce, BaseEnemy");
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    killPlayer(collision);
+                    collision.obj.damage();
                 }
             });
 
@@ -82,7 +74,7 @@ require([], function () {
             this.add("2d, aiBounce, BaseEnemy");
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    killPlayer(collision);
+                    collision.obj.damage();
                 }
             });
 
@@ -126,8 +118,7 @@ require([], function () {
 
             this.on("bump.left,bump.right,bump.bottom",function(collision) {
                 if(collision.obj.isA("Player")) {
-                    Q.stageScene("endGame",1, { label: "Game Over" });
-                    collision.obj.destroy();
+                    collision.obj.damage();
                 } else {
                     this.p.vy = -150;
                 }

@@ -1,7 +1,7 @@
 require([], function () {
     Q.Sprite.extend("Player",{
         init: function(p) {
-          this._super(p, { asset: "autobot.png", x: 140, y: 1960, jumpSpeed: -540});
+          this._super(p, { asset: "autobot.png", x: 140, y: 1960, jumpSpeed: -540 ,timeInvincible: 2});
           this.add('2d, platformerControls');
         },
         step: function(dt) {
@@ -15,6 +15,21 @@ require([], function () {
             if (this.p.y < 1100){
                 Q.stageScene("winGame",1, { label: "Game Over" });
                 this.destroy();
+            }
+
+            if(this.p.timeInvincible > 0) {
+                this.p.timeInvincible = Math.max(this.p.timeInvincible - dt, 0);
+            }
+
+        },
+        damage: function(){
+            if(!this.p.timeInvincible) {
+                Q.state.dec("lives", 1);
+                if(Q.state.p.lives < 0) {
+                    Q.stageScene("endGame",1, { label: "Game Over" });
+                    this.destroy();
+                }
+                this.p.timeInvincible = 1;
             }
         }
     });
