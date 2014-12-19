@@ -1,7 +1,10 @@
 require([], function () {
     function killPlayer(collision){
-        Q.stageScene("endGame",1, { label: "Game Over" });
-        collision.obj.destroy();
+        Q.state.dec("lives", 1);
+        if(Q.state.p.lives == 0) {
+            Q.stageScene("endGame",1, { label: "Game Over" });
+            collision.obj.destroy();
+        }
     }
 
     window.security_guards = [];
