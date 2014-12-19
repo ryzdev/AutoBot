@@ -42,8 +42,6 @@ require(objectFiles, function () {
     });
 
     Q.scene("endGame",function(stage) {
-
-
         var container = stage.insert(new Q.UI.Container({
             fill: "white",
             border: 5,
@@ -54,7 +52,7 @@ require(objectFiles, function () {
         }));
 
         stage.insert(new Q.UI.Button({
-            label: "Game Over\nClick to play again",
+            label: "You're fired! Click to play again",
             color: 'white',
             y: 0,
             x: 0
@@ -63,6 +61,28 @@ require(objectFiles, function () {
         }), container);
 
         container.fit(40,40);
+    });
+
+    Q.scene("winGame",function(stage) {
+        var container = stage.insert(new Q.UI.Container({
+            fill: "white",
+            border: 5,
+            shadow: 10,
+            shadowColor: "rgba(0,0,0,0.5)",
+            y: Q.height/2,
+            x: Q.width/2
+        }));
+
+        stage.insert(new Q.UI.Button({
+            label: "Congratulations! You're hired!!!!!!",
+            color: 'yellow',
+            y: 0,
+            x: 0
+        }, function() {
+            window.location = '';
+        }), container);
+
+        container.fit(60,60);
     });
 
     Q.scene("gameStats", function(stage) {
