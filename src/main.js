@@ -102,7 +102,28 @@ require(objectFiles, function () {
         var score = stage.insert(new Q.UI.Text({
                 label: "Score: 0",
                 color: "white",
-                x: 300,
+                x: 400,
+                y: 0
+            }),statsContainer);
+
+        var time = stage.insert(new Q.UI.Text({
+                label: "Time: 0",
+                color: "white",
+                x: 150,
+                y: 0
+            }),statsContainer);
+
+        var lives = stage.insert(new Q.UI.Text({
+                label: "Lives: 3",
+                color: "white",
+                x: -50,
+                y: 0
+            }),statsContainer);
+
+        var recs = stage.insert(new Q.UI.Text({
+                label: "Recommendations: 0",
+                color: "white",
+                x: -300,
                 y: 0
             }),statsContainer);
     });
