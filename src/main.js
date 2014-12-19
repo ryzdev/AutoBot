@@ -102,14 +102,14 @@ require(objectFiles, function () {
         var score = stage.insert(new Q.UI.Text({
                 label: "Score: 0",
                 color: "white",
-                x: 270,
+                x: 290,
                 y: 0
             }),statsContainer);
 
         var time = stage.insert(new Q.UI.Text({
                 label: "Time: 0",
                 color: "white",
-                x: 150,
+                x: 120,
                 y: 0
             }),statsContainer);
 
