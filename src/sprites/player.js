@@ -11,6 +11,11 @@ require([], function () {
             if(Q.inputs['right']  && this.p.direction == 'left') {
                 this.p.flip = false;
             }
+
+            if (this.p.y < 1100){
+                Q.stageScene("winGame",1, { label: "Game Over" });
+                this.destroy();
+            }
         }
     });
 });
