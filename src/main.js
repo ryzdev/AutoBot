@@ -75,7 +75,7 @@ require(objectFiles, function () {
         }));
 
         stage.insert(new Q.UI.Button({
-            label: "Congratulations! You're hired!!!!!!",
+            label: "Congratulations! You're hired!!!!!! You scored " + Q.state.p.score,
             color: 'yellow',
             y: 0,
             x: 0
@@ -85,6 +85,8 @@ require(objectFiles, function () {
 
         container.fit(60,60);
     });
+
+    var timer = setInterval ( function(){ }, 1000 );
 
     Q.scene("gameStats", function(stage) {
         var statsContainer = stage.insert(new Q.UI.Container({
@@ -106,8 +108,9 @@ require(objectFiles, function () {
                 y: 0
             }),statsContainer);
 
+
         var time = stage.insert(new Q.UI.Text({
-                label: "Time: " + Q.state.p.time,
+                label: "Time: 0",
                 color: "white",
                 x: 120,
                 y: 0
@@ -126,6 +129,11 @@ require(objectFiles, function () {
                 x: -300,
                 y: 0
             }),statsContainer);
+
+        var timer = setInterval ( function(){
+            Q.state.inc("time", 1);
+            Q.state.dec("score", 10);
+        }, 1000 );
     });
 
     Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png", function() { //creating stage (layer)
@@ -137,22 +145,22 @@ require(objectFiles, function () {
     Q.state.reset({ score: 5000, lives: 1 , recommendations: 0, time: 0});
 
     Q.state.on("change.score",function() {
-        var score_label = Q("UI.Text",1).first();
+        var score_label = Q("UI.Text",1).at(0);
         score_label.p.label = "Score: "+ Q.state.p.score;
     });
 
     Q.state.on("change.time", function() {
-        var info_label = Q("UI.Text", 1).index(2);
+        var info_label = Q("UI.Text", 1).at(1);
         info_label.p.label = "Time: "+ Q.state.p.time;
     });
 
-    Q.state.on("change.time", function() {
-        var info_label = Q("UI.Text", 1).index(3);
+    Q.state.on("change.lives", function() {
+        var info_label = Q("UI.Text", 1).at(2);
         info_label.p.label = "Lives: "+ Q.state.p.lives;
     });
 
-    Q.state.on("change.time", function() {
-        var info_label = Q("UI.Text", 1).index(4);
+    Q.state.on("change.recommendations", function() {
+        var info_label = Q("UI.Text", 1).at(3);
         info_label.p.label = "Recommendations: "+ Q.state.p.recommendations;
     });
 });
