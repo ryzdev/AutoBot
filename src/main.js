@@ -137,11 +137,11 @@ require(objectFiles, function () {
         Q.stageScene("gameStats",1);
     });
 
-    Q.state.set('score', 0);
+    Q.state.reset({ score: 0, lives: 1 , recommendations: 0});
     Q.state.on("change.score",function() {
 
-        var livesLabel = Q("UI.Text",1).first();
-        livesLabel.p.label = "Score: "+ Q.state.score;
+        var score_label = Q("UI.Text",1).first();
+        score_label.p.label = "Score: "+ Q.state.p.score;
     });
 
 });
