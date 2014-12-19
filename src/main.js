@@ -137,7 +137,7 @@ require(objectFiles, function () {
         Q.stageScene("gameStats",1);
     });
 
-    Q.state.reset({ score: 0, lives: 1 , recommendations: 0});
+    Q.state.reset({ score: 0, lives: 1 , recommendations: 0, time: 0});
     Q.state.on("change.score",function() {
 
         var score_label = Q("UI.Text",1).first();
