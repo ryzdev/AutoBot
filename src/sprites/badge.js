@@ -5,6 +5,7 @@ require([], function () {
             this.add("2d");
             this.on("bump.left,bump.right,bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
+//                    Q.audio.play('RECOMMENDATION');
                     Q.state.inc("score", 200);
                     //kill enemy
                     this.destroy();

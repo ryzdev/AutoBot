@@ -6,6 +6,18 @@ require([], function () {
 //        Q.audio.play('OST');
     });
 
-    Q.load({"DEAD": '../audio/super-mario-loses-game.mp3'},function() {
+    Q.load({"ENDGAME": '../audio/super-mario-loses-game.mp3'},function() {
     });
+
+//    Q.load({"COFFEE": '../audio/coffee.wav'},function() {
+//    });
+//
+//    Q.load({"RECOMMENDATION": '../audio/recommendation.wav'},function() {
+//    });
+//
+//    Q.load({"LOSE_LIFE": '../audio/lose_life.wav'},function() {
+//    });
+//
+//    Q.load({"KILL": '../audio/kill.wav'},function() {
+//    });
 });

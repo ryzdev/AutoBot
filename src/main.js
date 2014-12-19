@@ -1,4 +1,4 @@
-var Q = Quintus({ audioSupported: [ 'mp3' ] })
+var Q = Quintus({ audioSupported: [ 'mp3', 'wav' ] })
     .include("Sprites, Scenes, Input, 2D, Touch, UI, Audio")
     .setup({
         width: 960,
@@ -16,6 +16,7 @@ var objectFiles = [
     './src/sprites/badge',
     './src/sprites/recommendation',
     './src/sprites/coffee',
+    './src/sprites/seventh_floor',
     './src/audio'
 ];
  
@@ -23,14 +24,15 @@ require(objectFiles, function () {
     //creating scene on stage
 
     var enemyAssets = [
-        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
-        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
-        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
-        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
-        ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
-        ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
-        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
-        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}]
+//        ["EnemyToAvoid", {x: 1000, y: 2050, asset: "enemies/security-guard.png"}],
+//        ["EnemyToAvoid", {x: 500, y: 2050, asset: "enemies/security-guard.png"}],
+//        ["VerticalEnemyToAvoid", {x: 700, y: 1950, asset: "enemies/bodyguard.png"}],
+//        ["EnemyToKill", {x: 280, y: 910, asset: "enemies/wheel.png"}],
+//        ["Badge", {x: 450, y: 1800, asset: "badge.png"}],
+//        ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
+//        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
+//        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}],
+        ["EndGame", {x: 100, y: 300, asset: "7thfloor-door.png"}]
     ];
 
     Q.scene("firstStreet",function(stage) {
@@ -49,7 +51,7 @@ require(objectFiles, function () {
     });
 
     Q.scene("endGame",function(stage) {
-        Q.audio.play('DEAD');
+        Q.audio.play('ENDGAME');
         var container = stage.insert(new Q.UI.Container({
             fill: "white",
             border: 5,
@@ -73,6 +75,7 @@ require(objectFiles, function () {
     });
 
     Q.scene("winGame",function(stage) {
+//        Q.audio.play('OST');
         var container = stage.insert(new Q.UI.Container({
             fill: "white",
             border: 5,
@@ -144,7 +147,7 @@ require(objectFiles, function () {
         }, 1000 );
     });
 
-    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png", function() { //creating stage (layer)
+    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png, 7thfloor-door.png", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
         Q.stageScene("firstStreet");
         Q.stageScene("gameStats",1);
@@ -154,12 +157,18 @@ require(objectFiles, function () {
 
     Q.state.on("change.score",function() {
         var score_label = Q("UI.Text",1).at(0);
-        score_label.p.label = "Score: "+ Q.state.p.score;
+        if (score_label){
+            score_label.p.label = "Score: "+ Q.state.p.score;
+        }
+
     });
 
     Q.state.on("change.time", function() {
         var info_label = Q("UI.Text", 1).at(1);
-        info_label.p.label = "Time: "+ Q.state.p.time;
+        if (info_label){
+            info_label.p.label = "Time: "+ Q.state.p.time;
+        }
+
     });
 
     Q.state.on("change.lives", function() {
