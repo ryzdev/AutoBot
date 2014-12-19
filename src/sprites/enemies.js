@@ -61,7 +61,7 @@ require([], function () {
 
     Q.Sprite.extend("EnemyToAvoid", {
         init: function(p) {
-            this._super(p, {vx: -150, defaultDirection: "left"});
+            this._super(p, {vx: -200, defaultDirection: "left"});
             this.add("2d, aiBounce, BaseEnemy");
             this.on("bump.top",function(collision) {
                 if(collision.obj.isA("Player")) {
@@ -73,12 +73,43 @@ require([], function () {
         }
     });
 
-    Q.Sprite.extend("DoorToHeaven", {
+    Q.Sprite.extend("BadgeGuard", {
         init: function(p) {
-            this._super(p, {});
-            this.add("2d");
+            this._super(p, {vx: -150, defaultDirection: "left"});
+            this.add("2d, aiBounce, BaseEnemy");
+            this.on("bump.top",function(collision) {
+                if(collision.obj.isA("Player")) {
+                    killPlayer(collision);
+                }
+            });
 
-            //TODO: check for player collisions, die or kill accordingly
+            window.security_guards.push(this);
+        },
+        step: function(dt) {
+            var dirX = this.p.vx/Math.abs(this.p.vx);
+            var ground = Q.stage().locate(this.p.x, this.p.y + this.p.h/2 + 1, Q.SPRITE_DEFAULT);
+            var nextTile = Q.stage().locate(this.p.x + dirX * this.p.w/2 + dirX, this.p.y + this.p.h/2 + 1, Q.SPRITE_DEFAULT);
+
+            //if we are on ground and there is a cliff
+            if(!nextTile && ground) {
+                if(this.p.vx > 0) {
+                    if(this.p.defaultDirection == "right") {
+                        this.p.flip = "x";
+                    }
+                    else {
+                        this.p.flip = false;
+                    }
+                }
+                else {
+                    if(this.p.defaultDirection == "left") {
+                        this.p.flip = "x";
+                    }
+                    else {
+                        this.p.flip = false;
+                    }
+                }
+                this.p.vx = -this.p.vx;
+            }
         }
     });
 });
