@@ -1,7 +1,7 @@
 require([], function () {
     Q.Sprite.extend("Player",{
         init: function(p) {
-          this._super(p, { asset: "autobot.png", x: 140, y: 3220, jumpSpeed: -540});
+          this._super(p, { asset: "autobot.png", x: 140, y: 1960, jumpSpeed: -540});
           this.add('2d, platformerControls');
         },
         step: function(dt) {
