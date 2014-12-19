@@ -32,6 +32,8 @@ require(objectFiles, function () {
 //        ["Recommendation", {x: 1100, y: 1600, asset: "gold_star.png"}],
 //        ["BadgeGuard", {x: 350, y: 1800, asset: "enemies/security-guard.png"}],
 //        ["Coffee", {x: 1260, y: 1190, asset: "coffee.png"}],
+        ["EnemyToKill", {x: 500, y: 910, asset: "enemies/red_car.png"}],
+        ["EnemyToKillFast", {x: 500, y: 910, asset: "enemies/red_car.png"}],
         ["EndGame", {x: 100, y: 300, asset: "7thfloor-door.png"}]
     ];
 
@@ -147,7 +149,7 @@ require(objectFiles, function () {
         }, 1000 );
     });
 
-    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png, 7thfloor-door.png", function() { //creating stage (layer)
+    Q.load("tiles_map.png, autobot.png, firstStreet.tmx, enemies/security-guard.png, enemies/bodyguard.png, enemies/wheel.png, badge.png, gold_star.png, coffee.png, 7thfloor-door.png, enemies/red_car.png, enemies/blue_car.png", function() { //creating stage (layer)
         Q.sheet("tiles","tiles_map.png", { tilew: 70, tileh: 70});
         Q.stageScene("firstStreet");
         Q.stageScene("gameStats",1);

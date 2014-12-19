@@ -62,6 +62,24 @@ require([], function () {
         }
     });
 
+    Q.Sprite.extend("EnemyToKillFast", {
+        init: function(p) {
+            this._super(p, {vx: -200, defaultDirection: "left", min_x: 100, max_y: 2050});
+            this.add("2d, aiBounce, BaseEnemy");
+            this.on("bump.top",function(collision) {
+                if(collision.obj.isA("Player")) {
+                    //make the player jump
+//                    Q.audio.play('KILL');
+                    collision.obj.p.vy = -100;
+                    Q.state.inc("score",50);
+                    //kill enemy
+                    this.destroy();
+                }
+            });
+        }
+    });
+
+
     Q.Sprite.extend("EnemyToAvoid", {
         init: function(p) {
             this._super(p, {vx: -200, defaultDirection: "left"});
