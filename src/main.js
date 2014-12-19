@@ -88,7 +88,7 @@ require(objectFiles, function () {
             y: 0,
             x: 0
         }, function() {
-            window.location = '';
+            window.location = 'endpage.html';
         }), container);
 
         container.fit(60,60);
